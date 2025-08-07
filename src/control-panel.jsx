@@ -14,7 +14,9 @@ function ControlPanel() {
             backgroundColor: 'hsla(0, 0%, 94%, 0.07)',
             borderRadius: '8px',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-            
+            width: '100vw',
+            margin: '0 auto',
+            flexWrap: 'wrap',
         }}>
             <div className="color-picker">
                 <label htmlFor="color-palette">Color Palette:</label>
