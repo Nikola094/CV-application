@@ -2,10 +2,11 @@ import downloadIcon from './assets/download.svg';
 import translateIcon from './assets/translate.svg';
 
 
-function ControlPanel() {
+function ControlPanel({ onSettingsChange }) {
     return (
         <>
-        <div className="control-panel" style={{
+        <div className="control-panel" 
+        style={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -20,8 +21,13 @@ function ControlPanel() {
         }}>
             <div className="color-picker">
                 <label htmlFor="color-palette">Color Palette:</label>
-                <input type="color" id="color-palette" name="color-palette"
-                       defaultValue="#ffffff" className="color-picker-input" style={{
+                <input type="color"
+                       id="color-palette" 
+                       name="color-palette"
+                       defaultValue="#ffffff"
+                       className="color-picker-input" 
+                       onChange={(e) => onSettingsChange({ color: e.target.value })}
+                       style={{
             borderRadius: '50%',
             width: '30px',
             height: '30px',
@@ -32,7 +38,9 @@ function ControlPanel() {
             </div>
             <div className="font-size-picker">
                 <label htmlFor="font-size">Font Size:</label>
-                <select id="font-size" name="font-size" style={{
+                <select id="font-size" name="font-size"
+                          onChange={(e) => onSettingsChange({ fontSize: `${e.target.value }px` })}
+                 style={{
                     height: '1.5rem',
                     width: '6.5rem',
                     marginTop: '0.2rem',
@@ -45,8 +53,12 @@ function ControlPanel() {
             </div>
             <div className="font-family-picker">
                 <label htmlFor="font-family">Font Family:</label>
-                <input type="text" id="font-family" name="font-family"
-                       placeholder="Enter font family" style={{
+                <input type="text" 
+                       id="font-family" 
+                       name="font-family"
+                       placeholder="Enter font family" 
+                          onChange={(e) => onSettingsChange({ fontFamily: e.target.value })}
+                       style={{
             width: '8rem',
             height: '1.5rem',
             marginLeft: '0.5rem',
@@ -54,7 +66,11 @@ function ControlPanel() {
             </div>
             <div className="photo-checkbox">
                 <label htmlFor="include-photo">
-                    <input type="checkbox" id="include-photo" name="include-photo" style={{
+                    <input type="checkbox" 
+                           id="include-photo" 
+                           name="include-photo" 
+                            onChange={(e) => onSettingsChange({ includePhoto: e.target.checked })}
+                           style={{
                         marginRight: '0.5rem',
                         cursor: 'pointer',
                         verticalAlign: 'middle',
