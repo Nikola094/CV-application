@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.color-picker-input::-webkit-color-swatch-wrapper{
+    padding: 0;
+    border-radius: 50%;
+}
+.color-picker-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
