@@ -1,14 +1,20 @@
+import downloadIcon from './assets/download.svg';
+import translateIcon from './assets/translate.svg';
+
+
 function ControlPanel() {
     return (
+        <>
         <div className="control-panel" style={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-around',
             padding: '20px',
-            backgroundColor: '#f0f0f0',
+            backgroundColor: 'hsla(0, 0%, 94%, 0.07)',
             borderRadius: '8px',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+            
         }}>
             <div className="color-picker">
                 <label htmlFor="color-palette">Color Palette:</label>
@@ -18,12 +24,18 @@ function ControlPanel() {
             width: '30px',
             height: '30px',
             cursor: 'pointer',
-            margin: '0 10px',
+            marginLeft: '0.5rem',
+            verticalAlign: 'middle',
          }}/>
             </div>
             <div className="font-size-picker">
                 <label htmlFor="font-size">Font Size:</label>
-                <select id="font-size" name="font-size">
+                <select id="font-size" name="font-size" style={{
+                    height: '1.5rem',
+                    width: '6.5rem',
+                    marginTop: '0.2rem',
+                    marginLeft: '0.5rem',
+                }}>
                     <option value="18">18px</option>
                     <option value="16">16px</option>
                     <option value="14">14px</option>
@@ -32,27 +44,60 @@ function ControlPanel() {
             <div className="font-family-picker">
                 <label htmlFor="font-family">Font Family:</label>
                 <input type="text" id="font-family" name="font-family"
-                       placeholder="Enter font family" />
+                       placeholder="Enter font family" style={{
+            width: '8rem',
+            height: '1.5rem',
+            marginLeft: '0.5rem',
+                       }} />
             </div>
             <div className="photo-checkbox">
                 <label htmlFor="include-photo">
-                    <input type="checkbox" id="include-photo" name="include-photo" />
+                    <input type="checkbox" id="include-photo" name="include-photo" style={{
+                        marginRight: '0.5rem',
+                        cursor: 'pointer',
+                        verticalAlign: 'middle',
+                    }} />
                     Include Photo in Top Card
                 </label>
             </div>
-            <div className="actions">
-                <button id="download-pdf">Download as PDF</button>
-                <button id="translate-cyrillic">Translate to Cyrillic and create a copy of the original below</button>
-            </div>
-            <div className="warning-message">
-                <select id="translation-warning">
+                <div className="actions">
+                <button id="download-pdf-btn" style={{
+                        background: '#1ab3e683',
+                        boxShadow: '0 5px 5px 0 rgba(0,0,0,0.2)',
+                        border: 'none',
+                        padding: '0.5rem',
+                        marginRight: '1rem',
+                        cursor: 'pointer',}}>
+                    <img src={downloadIcon} alt="Download as PDF" style={{ width: '40px', height: '15px' }} />
+                </button>
+                <label htmlFor="download-pdf-btn">Download as PDF</label>
+                <div>
+                    <button id="translate-cyrillic-btn" style={{ 
+                        background: '#1ab3e683',
+                        boxShadow: '0 5px 5px 0 rgba(0,0,0,0.2)',
+                        border: 'none',
+                        padding: '0.5rem',
+                        marginRight: '1rem',
+                        marginTop: '0.5rem',
+                        cursor: 'pointer',}}>
+                    <img src={translateIcon} alt="Translate to Cyrillic" style={{ width: '40px', height: '15px' }} />
+                    </button>
+                    <label htmlFor="translate-cyrillic-btn">Translate to Cyrillic and create a copy of the original below</label>
+                    <select id="translation-warning" style={{ display: 'none' }}>
                     <option value="">Please double check the translation, it may not be accurate.</option>
-                </select>
-            </div>
-            <div className="draggable-info">
-                <p>Drag and drop cards to rearrange them. Top div is fixed.</p>
-            </div>  
+                    </select>
+                </div>
+                </div>
     </div>
+            <div className="draggable-info" style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '20px',
+            }}>
+                <p>Drag and drop cards to rearrange them. Top div is fixed.</p>
+                
+            </div>
+      </>
     )
 }
 
