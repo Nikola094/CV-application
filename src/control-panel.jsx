@@ -1,8 +1,9 @@
 import downloadIcon from './assets/download.svg';
 import translateIcon from './assets/translate.svg';
 
+function ControlPanel({ settings, onSettingsChange }) {
+      if (!settings) return null;   
 
-function ControlPanel({ onSettingsChange }) {
     return (
         <>
         <div className="control-panel" 
@@ -64,11 +65,15 @@ function ControlPanel({ onSettingsChange }) {
             marginLeft: '0.5rem',
                        }} />
             </div>
-            <div className="photo-checkbox">
+            <div className="checkboxs" style={{
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
                 <label htmlFor="include-photo">
                     <input type="checkbox" 
                            id="include-photo" 
                            name="include-photo" 
+                           checked={settings.includePhoto || false}
                             onChange={(e) => onSettingsChange({ includePhoto: e.target.checked })}
                            style={{
                         marginRight: '0.5rem',
@@ -76,6 +81,18 @@ function ControlPanel({ onSettingsChange }) {
                         verticalAlign: 'middle',
                     }} />
                     Include Photo in Top Card
+                </label>
+                <label htmlFor="render-edit-btns">
+                    <input type="checkbox"
+                           name="render-edit"
+                           id="render-edit" 
+                           checked={settings.showEditButtons || true} 
+                           onChange={(e) => onSettingsChange({ showEditButtons: e.target.checked })}
+                           style={{
+                            marginRight: '0.5rem',
+                            verticalAlign: 'middle'
+                           }}/>
+                    Show Edit Buttons
                 </label>
             </div>
                 <div className="actions">

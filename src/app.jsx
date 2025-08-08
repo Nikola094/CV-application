@@ -8,6 +8,7 @@ function App() {
     fontSize: '14px',
     fontFamily: 'Arial, sans-serif',
     includePhoto: false,
+    showEditButtons: true
   });
 
   const handleSettingsChange = (newSetting) => {
@@ -19,7 +20,9 @@ function App() {
 
   return (
     <>
-      <ControlPanel onSettingsChange={handleSettingsChange} />
+      <ControlPanel 
+      settings={settings}
+      onSettingsChange={handleSettingsChange} />
       <Cards settings={settings} />
     </>
   );
