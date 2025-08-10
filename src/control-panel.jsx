@@ -1,5 +1,25 @@
 import downloadIcon from './assets/download.svg';
 import translateIcon from './assets/translate.svg';
+import html2pdf from 'html2pdf.js';
+
+const handleDownloadPDF = () => {
+  document.querySelectorAll('.card-buttons-wrapper').forEach(btn => btn.style.display = 'none');
+
+  const element = document.getElementById('cv-wrapper');
+
+  const opt = {
+    margin: 0.5,
+    filename: 'cv.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+  console.log("CV element:", element);
+
+  html2pdf().from(element).set(opt).save().then(() => {
+    document.querySelectorAll('.card-buttons-wrapper').forEach(btn => btn.style.display = '');
+  });
+};
 
 function ControlPanel({ settings, onSettingsChange }) {
       if (!settings) return null;   
@@ -86,7 +106,7 @@ function ControlPanel({ settings, onSettingsChange }) {
                     <input type="checkbox"
                            name="render-edit"
                            id="render-edit" 
-                           checked={settings.showEditButtons || true} 
+                           checked={settings.showEditButtons} 
                            onChange={(e) => onSettingsChange({ showEditButtons: e.target.checked })}
                            style={{
                             marginRight: '0.5rem',
@@ -96,7 +116,9 @@ function ControlPanel({ settings, onSettingsChange }) {
                 </label>
             </div>
                 <div className="actions">
-                <button id="download-pdf-btn" style={{
+                <button id="download-pdf-btn" 
+                        onClick={handleDownloadPDF}
+                        style={{
                         background: '#1ab3e683',
                         boxShadow: '0 5px 5px 0 rgba(0,0,0,0.2)',
                         border: 'none',
